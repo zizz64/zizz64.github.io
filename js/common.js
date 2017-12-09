@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+	$(".auth_buttons").click(function() {
+		$(this).next().slideToggle();
+	});
+	$(".main_mnu_button").click(function() {
+		$(".maian_mnu ul").slideToggle();
+	});
+
 	//Таймер обратного отсчета
 	//Документация: http://keith-wood.name/countdown.html
 	//<div class="countdown" date-time="2015-01-07"></div>
@@ -39,7 +46,8 @@ $(document).ready(function() {
 	//Документация: http://owlgraphic.com/owlcarousel/
 	var owl = $(".carousel");
 	owl.owlCarousel({
-		items : 4
+		items : 3,
+		autoHeight : true
 	});
 	owl.on("mousewheel", ".owl-wrapper", function (e) {
 		if (e.deltaY > 0) {
@@ -49,10 +57,10 @@ $(document).ready(function() {
 		}
 		e.preventDefault();
 	});
-	$(".next_button").click(function(){
+	$(".next_button").click(function() {
 		owl.trigger("owl.next");
 	});
-	$(".prev_button").click(function(){
+	$(".prev_button").click(function() {
 		owl.trigger("owl.prev");
 	});
 
@@ -69,11 +77,11 @@ $(document).ready(function() {
 	
 	//Аякс отправка форм
 	//Документация: http://api.jquery.com/jquery.ajax/
-	$("form").submit(function() {
+	$("#callback").submit(function() {
 		$.ajax({
 			type: "GET",
 			url: "mail.php",
-			data: $("form").serialize()
+			data: $("#callback").serialize()
 		}).done(function() {
 			alert("Спасибо за заявку!");
 			setTimeout(function() {
